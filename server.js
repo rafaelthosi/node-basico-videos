@@ -36,8 +36,12 @@ server.put('/videos/:id', (request, reply) => {
     return reply.status(204).send()
 })
 
-server.delete('/videos/:id', () => {
-    return 'Hello Node.js'
+server.delete('/videos/:id', (request, reply) => {
+    const videoId = request.params.id
+
+    database.delete(videoId)
+
+    return reply.status(204).send()
 })
 
 server.listen({
